@@ -1,7 +1,7 @@
 from time import time as detak
 from random import shuffle as kocok
 
-k = list(range(1 , 60001))
+k = list(range(1 , 6001))
 kocok(k)
 u_bub = k[:] ## \\
 u_sel = k[:] ## -- Jangan lupa simbol [:]-nya!.

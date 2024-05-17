@@ -76,6 +76,6 @@ class MhsTIF(Mahasiswa): # perhatikan class induknya: Mahasiswa
 
 
 mhs1 = MhsTIF("rizky", "L201", "Blora", 100000000)
-mhs1.
+m
 
         
