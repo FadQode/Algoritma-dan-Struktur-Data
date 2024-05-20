@@ -1,15 +1,8 @@
 def numUniqueEmails(emails):
     sent = []
     for i in emails:
-        splitted = i.split("@")
-        if "." in splitted[0]:
-            splitted[0] = splitted[0].replace(".", "") 
-        if "+" in splitted[0]:
-            for j in range(len(splitted[0])):
-                if splitted[0][j] == "+":
-                    splitted[0] = splitted[0].replace(splitted[0][j:], "")
-                    break
-        trumail = splitted[0] + "@" + splitted[1] 
+        name, domain = i.split("@")
+        trumail = name.split("+")[0].replace(".","") +  "@" + domain
         if trumail not in sent:
             sent.append(trumail)    
     return sent  

@@ -1,9 +1,7 @@
 import re
-
+nim = "l200220234"
 f = open('kei.html', 'r', encoding='latin-1') ## membuka file.
 p2 = r"/wiki/\w*"
-p3 = r"\d*"
-p4 = r"\d{3}(\.\d{2})"
 country = re.findall(p2, f.read())
 f.close
 
@@ -17,5 +15,5 @@ for i in range(len(kei)):
     ind = (country[i], kei[i])
     index.append(ind)
 print(index)    
-
+print(nim)
 
