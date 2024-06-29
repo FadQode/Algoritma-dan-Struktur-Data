@@ -11,6 +11,8 @@ u_sel = k[:]  # Copy list k to u_sel
 u_ins = k[:]  # Copy list k to u_ins (don't forget the [:])
 u_mrg = k[:]  # Copy list k to u_mrg
 u_qck = k[:]  # Copy list k to u_qck
+u_mmrg = k[:]
+U_qck3 = k[:]
 
 def bubbleSort(arr):
     n = len(arr)
@@ -113,6 +115,77 @@ def partition(A, low, high):
 
     return j 
 
+def mergeRecursive(A, start, end):
+    if start < end:
+        mid = (start + end) // 2
+        mergeRecursive(A, start, mid)
+        mergeRecursive(A, mid + 1, end)
+        merge(A, start, mid, end)
+        
+def merge(A, start, mid, end):
+  i = start
+  j = mid + 1
+  k = start
+  temp = [None] * (end - start + 1) 
+
+  while i <= mid and j <= end:
+    if A[i] < A[j]:
+      temp[k - start] = A[i]
+      i += 1
+    else:
+      temp[k - start] = A[j]
+      j += 1
+    k += 1
+
+  while i <= mid:
+    temp[k - start] = A[i]
+    i += 1
+    k += 1
+
+  while j <= end:
+    temp[k - start] = A[j]
+    j += 1
+    k += 1
+  for i in range(start, end + 1):
+    A[i] = temp[i - start]
+
+def modMergeSort(A):
+    mergeRecursive(A, 0, len(A) - 1)
+    return A
+def median_of_three(A, left, right):
+  mid = left + (right - left) // 2
+
+
+  if A[left] > A[mid]:
+    A[left], A[mid] = A[mid], A[left]
+  if A[left] > A[right]:
+    A[left], A[right] = A[right], A[left]
+  if A[mid] > A[right]:
+    A[mid], A[right] = A[right], A[mid]
+
+
+  pivot = A[mid]
+  A[mid], A[right] = A[right], A[mid]  
+  return pivot
+
+def partition3(A, left, right):
+  pivot = median_of_three(A, left, right)
+  i = left - 1
+
+  for j in range(left, right):
+    if A[j] <= pivot:
+      i += 1
+      A[i], A[j] = A[j], A[i]
+
+  A[i + 1], A[right] = A[right], A[i + 1]
+  return i + 1
+
+def quickSort3(A, left, right):
+  if left < right:
+    pivot_index = partition3(A, left, right)
+    quickSort3(A, left, pivot_index - 1)
+    quickSort3(A, pivot_index + 1, right)
+
 
 # Mengukur waktu untuk setiap algoritma pengurutan
 aw = detak()  # Catat waktu awal
@@ -140,3 +213,15 @@ aw = detak()
 quickSort(u_qck)
 ak = detak()
 print('Quick Sort: %g detik' % (ak - aw))
+
+aw = detak()
+modMergeSort(u_mmrg)
+ak = detak()
+print('Modified Merge Sort: %g detik' % (ak - aw))
+
+aw = detak()
+quickSort3(U_qck3, 0, len(U_qck3) -1)
+ak = detak()
+print('Modified Quick Sort: %g detik' % (ak - aw))
+
+print("Fadhil E 234")

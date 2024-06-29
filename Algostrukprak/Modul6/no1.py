@@ -36,10 +36,10 @@ def mergeSort(A):
         i=0 ; j=0 ; k=0
         while i < len(separuhKiri) and j < len(separuhKanan):
             if separuhKiri[i].nim < separuhKanan[j].nim: # while-lopp ini
-                A[k] = separuhKiri[i] # menggabungkan kedua list, yakni
+                A[k]= separuhKiri[i] # menggabungkan kedua list, yakni
                 i = i + 1 # separuhKiri dan separuhKanan,
             else: # sampai salah satu kosong.
-                A[k] = separuhKanan[j] # Perhatikan kesamaan strukturnya
+                A[k] = separuhKanan[j]# Perhatikan kesamaan strukturnya
                 j = j + 1 # dengan proses penggabungan
             k=k+1 # dua list urut.
 
@@ -52,8 +52,7 @@ def mergeSort(A):
             A[k] = separuhKanan[j] # tumpukkan ke A
             j = j + 1 # satu demi satu.
             k = k + 1
-    for i in A:
-        print(i)
+    return A
 
 def quickSort(A):
     quickSortBantu(A, 0, len(A) - 1)  # Call quickSortBantu recursively
@@ -89,6 +88,10 @@ def partition(A, low, high):
     return j  # Return the right index (pivot position) 
 
 ls = [31, 20, 17, 44, 54, 77, 55, 93]
+print("ini Merge Sort")
+mergeSort(Daftar)
+for i in mergeSort(Daftar):
+    print(i)
 
-print(mergeSort(Daftar))
+print("\n\n ini quick sort")
 quickSort(Daftar)
